@@ -1,7 +1,7 @@
 # LeetCode
 * 建立兩個個主要資料夾（題目收集、學習內容）＋一個玩整的README整理
 1. 題目
-  + 主要以Python
+  + 主要以Python記錄於VScode上
   + 先記錄頭150題
 2. 學習
   + 以JupyterNotebook為主
@@ -11,7 +11,7 @@
 * 完整的學習流程
   + How to be a softwair engineer: https://github.com/jwasham/coding-interview-university
   
-* 他人詳解
+* 其他人詳解
   + https://github.com/kamyu104/LeetCode-Solutions
   + https://github.com/qiyuangong/leetcode
   + https://github.com/Garvit244/Leetcode
