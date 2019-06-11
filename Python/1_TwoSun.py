@@ -8,7 +8,7 @@ Related topic: Array, Hash table
 Similar questions: 3Sum, 4Sum, TwoSumII, TwoSumIII
 '''
 class Solution:
-    def twoSum(self, nums, target):
+    def twoSum1(self, nums, target):
         """
         Methods:Array
         Complexity:O(n^2)
@@ -23,7 +23,7 @@ class Solution:
                     return [i, j]
         return []
 
-    def twoSum(self, nums, target):
+    def twoSum2(self, nums, target):
         """
         Methods:Hash
         Complexity:O(n)
@@ -31,7 +31,12 @@ class Solution:
         :type target: int
         :rtype: List[int]
         """
+        hash_nums = {}
+        for i, num in enumerate(nums):
+            if target - num in hash_nums:
+                return [hash_nums[target-num], i]
+            hash_nums[num] = i
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.twoSum([3, 2, 4], 6))
+    print(sol.twoSum2([3, 2, 4], 6))
