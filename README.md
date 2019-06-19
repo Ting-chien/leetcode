@@ -15,6 +15,7 @@
   + https://github.com/kamyu104/LeetCode-Solutions
   + https://github.com/qiyuangong/leetcode
   + https://github.com/Garvit244/Leetcode
+  + https://blog.csdn.net/coder_orz
   
 * Python的各式演算法
   + https://github.com/TheAlgorithms/Python
