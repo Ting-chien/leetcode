@@ -33,8 +33,9 @@ class Solution:
         """
         hash_nums = {}
         for i, num in enumerate(nums):
+            remain = target - num
             if target - num in hash_nums:
-                return [hash_nums[target-num], i]
+                return [remain, i]
             hash_nums[num] = i
 
     def twoSum3(self, nums, target):
