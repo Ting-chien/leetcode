@@ -9,6 +9,32 @@ Related topics: Array, Two pointers
 Similar questions: 3Sum, 3Sum smaller
 '''
 class Solution:
+
+    def mySolution1(self, nums, target):
+
+        min_value = math.inf
+        res = 0
+        nums.sort()
+
+        for i in range(len(nums) - 2):
+            if (i == 0 or nums[i] != nums[i-1]):
+                remain = target - nums[i]
+                lhs_pointer = i + 1
+                rhs_pointer = len(nums) - 1
+                while lhs_pointer != rhs_pointer:
+                    if remain == (nums[lhs_pointer] + nums[rhs_pointer]):
+                        return target
+                    else:
+                        if abs(remain - (nums[lhs_pointer] + nums[rhs_pointer])) < min_value:
+                            min_value = abs(remain - (nums[lhs_pointer] + nums[rhs_pointer]))
+                            res = nums[i] + nums[lhs_pointer] + nums[rhs_pointer]
+                        if (nums[lhs_pointer] + nums[rhs_pointer]) > remain:
+                            rhs_pointer -= 1
+                        elif (nums[lhs_pointer] + nums[rhs_pointer]) < remain:
+                            lhs_pointer += 1
+                            
+        return res
+
     def threeSumClo(self, nums, target):
         """
         :type nums: List[int]
