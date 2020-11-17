@@ -9,6 +9,17 @@ Related topic: Array, Two pointers
 Similar questions: Remove element, Remove duplcates II
 '''
 class Solution:
+
+    def mySolution(self, nums):
+        length = 0
+        for i in range(len(nums)):
+            if i == len(nums) - 1:
+                nums.insert(length, nums.pop(i))
+                return nums[:length+1]
+            if nums[i] != nums[i+1]:
+                length += 1
+                nums.insert(length-1, nums.pop(i))
+                
     def removeDuplicates(self, nums):
         """
         :type nums: List[int]
