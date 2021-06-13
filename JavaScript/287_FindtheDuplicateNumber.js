@@ -19,6 +19,8 @@ var findDuplicate = function(nums) {
  * 可以試試看 Binary Search 解法，可以"降低空間複雜度"
  * 依題目敘述，若陣列有100個數字，則數字在1~99，且只有一個數字重複
  * 因此從中切半看哪邊大於50的數量更多則可以知道重複的數字在哪邊
+ * 
+ * 備註：該方法的時間複雜度會比較高，但目的是降低記憶體用量
  */
 var findDuplicate = function(nums) {
   let start = 0;
@@ -28,7 +30,7 @@ var findDuplicate = function(nums) {
     console.log(mid);
     let count = 0;
     for (let num of nums) {
-      if (num > mid) count ++;
+      if (num > mid && num <= end) count ++;
     }
     if (count > (end - mid)) {
       start = mid
