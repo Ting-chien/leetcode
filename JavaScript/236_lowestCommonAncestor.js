@@ -1,27 +1,10 @@
-
-// Definition for a binary tree node.
-function TreeNode(val) {
-    this.val = val;
-    this.left = this.right = null;
-}
-
-let node1 = new TreeNode(3);
-let node2 = new TreeNode(5);
-let node3 = new TreeNode(1);
-let node4 = new TreeNode(6);
-let node5 = new TreeNode(2);
-let node6 = new TreeNode(0);
-let node7 = new TreeNode(8);
-let node8 = new TreeNode(7);
-let node9 = new TreeNode(4);
-node1.left = node2;
-node1.right = node3;
-node2.left = node4;
-node2.right = node5;
-node5.left = node8;
-node5.right = node9;
-node3.left = node6;
-node3.right = node7;
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
 
 /**
  * @param {TreeNode} root
@@ -55,7 +38,7 @@ var lowestCommonAncestor = function(root, p, q) {
         ancestors.add(p);
         p = parent.get(p);
     }
-    console.ancestors
+    // 在 ancestor 中尋找是否有符合 q 或 q.ancestor 的節點
     while (!(ancestors.has(q))) {
         q = parent.get(q);
     }
@@ -85,5 +68,3 @@ var lowestCommonAncestor = function(root, p, q) {
         return right;
     }
 };
-
-console.log(lowestCommonAncestor(node1, node2, node9))
