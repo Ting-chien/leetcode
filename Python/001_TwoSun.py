@@ -32,11 +32,11 @@ class Solution:
         :rtype: List[int]
         """
         hash_nums = {}
-        for i, num in enumerate(nums):
-            remain = target - num
-            if target - num in hash_nums:
-                return [remain, i]
-            hash_nums[num] = i
+        for index, value in enumerate(nums):
+            remain = target - value
+            if remain in hash_nums:
+                return [hash_nums[remain], index]
+            hash_nums[value] = index
 
     def twoSum3(self, nums, target):
         """
@@ -64,4 +64,4 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.twoSum3([3, 2, 4], 6))
+    print(sol.twoSum3([2,7,11,15], 9))
