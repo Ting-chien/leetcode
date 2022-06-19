@@ -105,3 +105,6 @@ dist
 
 # OS Editor forced
 .DS_Store
+
+# virtual env
+venv/

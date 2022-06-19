@@ -1,0 +1,18 @@
+when input teacher name is empty
+1. should return an error
+
+when input teacher name is not empty 
+
+'''Python unittest edition'''
+
+# Check if first character is uppercase
+assertTrue(name[:1].isupper())
+
+# Check the string is no longer than 16 characters
+assertLess(len(name), 16, "String should be less than 16 characters")
+
+# Check if the string is only contain by space, ex: "     "
+assertTrue(name.isspace())
+
+# Check if the string is only contain by alphabets(no numbers, #$%..)
+assertTrue(name.isalpha())
