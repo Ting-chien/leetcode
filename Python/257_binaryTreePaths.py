@@ -30,15 +30,19 @@ class Solution2:
         if not root: return []
 
         res = []
-        self.traverse(root, [], res)
+        self.backtrack(root, [], res)
         return res
 
     def backtrack(self, root: TreeNode, path: List[str] = [], res: List[str] = []) -> None:
+
+        if not root.left and not root.right:
+            path.append(str(root.val))
+            res.append("->".join(path))
+            path.pop()
+        
         path.append(str(root.val))
         if root.left: self.backtrack(root.left, path, res)
         if root.right: self.backtrack(root.right, path, res)
-        if not root.left and not root.right:
-            res.append("->".join(path))
         path.pop()
 
 if __name__ == '__main__':
@@ -46,5 +50,5 @@ if __name__ == '__main__':
     root.left = TreeNode(2)
     root.right = TreeNode(3)
     root.left.right = TreeNode(5)
-    sol = Solution1()
+    sol = Solution2()
     print(sol.binaryTreePaths(root=root))
