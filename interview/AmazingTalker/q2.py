@@ -19,7 +19,8 @@ class Solution:
                 if curr_sum > max_sum:
                     max_sum = curr_sum
                     res = [[A[left],A[right]]]
-                else:
+                # else
+                elif curr_sum == max_sum:
                     res.append([A[left],A[right]])
                 left += 1
             else:
@@ -33,3 +34,12 @@ if __name__ == '__main__':
     print(sol.two_sum_lessK([1, 2, 3, 4], 4))
     print(sol.two_sum_lessK([1, 2, 3], 3))
     print(sol.two_sum_lessK([1, 2, 2, 3, 4], 5))
+    print(sol.two_sum_lessK([4, 3, 2, 1, 4, 3, 2, 1], 10))
+    print(sol.two_sum_lessK([2, 1], 5))
+    print(sol.two_sum_lessK([-2, -1, -1, -2], -2))
+    # print (two_sum_less_than_k([1, 2, 3, 4], 4))		# [(1, 2)]
+	# print (two_sum_less_than_k([1, 2, 3], 3))			# []
+	# print (two_sum_less_than_k([1, 2, 2, 3, 4], 5))		# [(1, 3), (2, 2)]
+	# print (two_sum_less_than_k([4, 3, 2, 1, 4, 3, 2, 1], 10))	# [(4, 4)]
+	# print (two_sum_less_than_k([2, 1], 5))				# [(1, 2)]
+	# print (two_sum_less_than_k([-2, -1, -1, -2], -2))	# [(-2, -1)]

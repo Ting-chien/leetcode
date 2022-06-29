@@ -1,6 +1,8 @@
 class Solution:
 
     def convert_to_base7(self, num: int) -> str:
+
+        if num == 0: return 0
         
         is_positive = num > 0
         
@@ -14,6 +16,7 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.convert_to_base7(100))
+    print(sol.convert_to_base7(-100))
     print(sol.convert_to_base7(-7))
     print(sol.convert_to_base7(20))
+    print(sol.convert_to_base7(0))
