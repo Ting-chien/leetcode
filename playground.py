@@ -9,18 +9,16 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        """
-        概念：此題想透過pre-order的方式往下查找BST中符合條件的node，當遇到node的值等於val時，
-        直接將node回傳，若不等於則以遞迴的方式往左或右查找，若沒有左或右節點則回傳null。
-        """
-        if root:
-            # Check whether node value equal to target value here
-            if root.val == val: return root
-            # if not, check next node in pre-order way.
-            return self.searchBST(root.left, val) or self.searchBST(root.right, val)
-        
-        return None
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        def dfs(root: Optional[TreeNode]):
+            nonlocal res
+            if root:
+                dfs(root.left)
+                res.append(root.val)
+                dfs(root.right)
+        dfs(root)
+        return res
     
 
 def traverse(root: Optional[TreeNode]) -> List[Any]:
@@ -32,17 +30,22 @@ def traverse(root: Optional[TreeNode]) -> List[Any]:
         res = res + traverse(root.right)
     return res
 
-root = TreeNode(4)
-root.left = TreeNode(2)
-root.right = TreeNode(7)
-root.left.left = TreeNode(1)
-root.left.right = TreeNode(3)
+root = TreeNode(1)
+# root.left = TreeNode(2)
+root.right = TreeNode(2)
+# root.left.left = TreeNode(1)
+# root.left.right = TreeNode(3)
+root.right.left = TreeNode(3)
 print(traverse(root))
 
 # Test 1: root = [4,2,7,1,3], val = 2
-res = Solution().searchBST(root, val=2)
-print(traverse(res))
+res = Solution().inorderTraversal(root=root)
+print(res)
 
 # Test 2: root = [4,2,7,1,3], val = 5
-res = Solution().searchBST(root, val=5)
-print(traverse(res))
+res = Solution().inorderTraversal(root=None)
+print(res)
+
+# Test 3: root = 1
+res = Solution().inorderTraversal(root=TreeNode(1))
+print(res)
