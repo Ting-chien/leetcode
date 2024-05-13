@@ -9,16 +9,28 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-        def dfs(root: Optional[TreeNode]):
-            nonlocal res
-            if root:
-                dfs(root.left)
-                res.append(root.val)
-                dfs(root.right)
-        dfs(root)
-        return res
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """If you want to print your node in level order, it is like 
+        a BFS and I'm going to go though all these nodes with a queue.
+        """
+        if not root: return
+        queue = [root, None]
+        value = []
+        while queue != [None]:
+            tmp = []
+            while queue:
+                node = queue.pop(0)
+                if node:
+                    tmp.append(node.val)
+                    if left := node.left:
+                        queue.append(left)
+                    if right := node.right:
+                        queue.append(right)
+                else:
+                    break
+            value.append(tmp)
+            queue.append(None)
+        return value
     
 
 def traverse(root: Optional[TreeNode]) -> List[Any]:
@@ -30,22 +42,21 @@ def traverse(root: Optional[TreeNode]) -> List[Any]:
         res = res + traverse(root.right)
     return res
 
-root = TreeNode(1)
-# root.left = TreeNode(2)
-root.right = TreeNode(2)
-# root.left.left = TreeNode(1)
-# root.left.right = TreeNode(3)
-root.right.left = TreeNode(3)
+root = TreeNode(3)
+root.left = TreeNode(9)
+root.right = TreeNode(20)
+root.right.left = TreeNode(15)
+root.right.right = TreeNode(7)
 print(traverse(root))
 
 # Test 1: root = [4,2,7,1,3], val = 2
-res = Solution().inorderTraversal(root=root)
+res = Solution().levelOrder(root=root)
 print(res)
 
 # Test 2: root = [4,2,7,1,3], val = 5
-res = Solution().inorderTraversal(root=None)
+res = Solution().levelOrder(root=None)
 print(res)
 
 # Test 3: root = 1
-res = Solution().inorderTraversal(root=TreeNode(1))
+res = Solution().levelOrder(root=TreeNode(1))
 print(res)
