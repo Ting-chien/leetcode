@@ -9,28 +9,25 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        """If you want to print your node in level order, it is like 
-        a BFS and I'm going to go though all these nodes with a queue.
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        """透過迭代的方式找尋 binary tree 的 paths，和一般
+        作法不同的地方是，stack 除了會儲存 node 外，還會保留
+        當時的路徑紀錄。
         """
         if not root: return
-        queue = [root, None]
-        value = []
-        while queue != [None]:
-            tmp = []
-            while queue:
-                node = queue.pop(0)
-                if node:
-                    tmp.append(node.val)
-                    if left := node.left:
-                        queue.append(left)
-                    if right := node.right:
-                        queue.append(right)
-                else:
-                    break
-            value.append(tmp)
-            queue.append(None)
-        return value
+        stack = [(root, str(root.val))]
+        res = []
+        while stack:
+            node, path = stack.pop()
+            # insert path into res if lead node
+            if not node.left and not node.right:
+                res.append(path)
+            # go throught left and right sub tree
+            if right := node.right:
+                stack.append((right, path + "->" + str(right.val)))
+            if left := node.left:
+                stack.append((left, path + "->" + str(left.val)))
+        return res
     
 
 def traverse(root: Optional[TreeNode]) -> List[Any]:
