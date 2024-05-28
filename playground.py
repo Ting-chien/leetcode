@@ -8,31 +8,13 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
-class Solution:
-    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
-        """使用 stack 解決問題，在 stack 中同時儲存 (node, path, curr_sum)"""
-        if not root: return 
-        res = []
-        stack = [(root, [root.val], root.val)]
-        while stack:
-            node, path, tmp = stack.pop()
-            if not node.left and not node.right and tmp == targetSum:
-                res.append(path[:])
-            if left := node.left:
-                stack.append((left, path+[left.val], tmp+left.val))
-            if right := node.right:
-                stack.append((right, path+[right.val], tmp+right.val))
-        return res
-    
-
-def traverse(root: Optional[TreeNode]) -> List[Any]:
+def preorder_traverse(root: Optional[TreeNode]) -> List[Any]:
     """Traverse tree nodes in pre-order way."""
     res = []
     if root:
         res.append(root.val)
-        res = res + traverse(root.left)
-        res = res + traverse(root.right)
+        res = res + preorder_traverse(root.left)
+        res = res + preorder_traverse(root.right)
     return res
 
 def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
@@ -59,23 +41,20 @@ def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
     
     return root
 
-node = insert_level_order([5,4,8,11,None,13,4,7,2,None,None,5,1])
 
-# Example 1: [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum=22
-# root = TreeNode(5)
-# root.left = TreeNode(4)
-# root.right = TreeNode(8)
-# root.left.left = TreeNode(11)
-# root.right.left = TreeNode(13)
-# root.right.right = TreeNode(4)
-# root.left.left.left = TreeNode(7)
-# root.left.left.right = TreeNode(2)
-# ro
-res = Solution().pathSum(node, targetSum=22)
-print(res)
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        """使用 stack 解決問題，在 stack 中同時儲存 (node, path, curr_sum)"""
+        if not root: return 
+        res = []
+        stack = [(root, [root.val], root.val)]
+        while stack:
+            node, path, tmp = stack.pop()
+            if not node.left and not node.right and tmp == targetSum:
+                res.append(path[:])
+            if left := node.left:
+                stack.append((left, path+[left.val], tmp+left.val))
+            if right := node.right:
+                stack.append((right, path+[right.val], tmp+right.val))
+        return res
 
-# # Example 2: [1,2], targetSum=0
-# root = TreeNode(1)
-# root.left = TreeNode(2)
-# res = Solution().pathSum(root, targetSum=0)
-# print(res)

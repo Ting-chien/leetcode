@@ -7,45 +7,46 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Solution:
-    '''
-    Related to 257. Binary Tree Paths
-    1. Find all possible path from root to leaf
-    2. Check if the path sum is equal to the target
-    '''
+class Solution1:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
-        res, path = [], []
-        self.dfs(root=root, path=path, res=res, target=targetSum)
+        """此題應該很類似題 257. Binary Tree Paths 的概念，不過是
+        要在 leaf node 檢查是否加總為 targetSum，並且 path 為一陣列而不是 str。
+        若沒有符合條件則需回傳空陣列。
+        """
+        res = []
+        def backtrack(node: Optional[TreeNode], path: List[int]):
+            nonlocal res
+            # return case (leaf node and sum(path) == targetSum)
+            if (not node.left
+                and not node.right
+                and sum(path) == targetSum
+            ):
+                res.append(path[:])
+                return
+            # general case
+            if left := node.left:
+                backtrack(left, path + [left.val])
+            if right := node.right:
+                backtrack(right, path + [right.val])
+        backtrack(root, [root.val])
         return res
-        
-    
-    def dfs(self, root: Optional[TreeNode], path: List[int], res: List[List[int]], target: int):
-        if not root:
-            return
-        path.append(root.val)
-        if not root.left and not root.right:
-            # Check if all values in path are equal to target
-            if sum(path) == target:
-                print("Path is {}".format(path))
-                res.append(path.copy())
-        if root.left:
-            self.dfs(root.left, path, res, target)
-        if root.right:
-            self.dfs(root.right, path, res, target)
-        
-        path.pop()
+
+class Solution2:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        """使用 stack 解決問題，在 stack 中同時儲存 (node, path, curr_sum)"""
+        if not root: return 
+        res = []
+        stack = [(root, [root.val], root.val)]
+        while stack:
+            node, path, tmp = stack.pop()
+            if not node.left and not node.right and tmp == targetSum:
+                res.append(path[:])
+            if left := node.left:
+                stack.append((left, path+[left.val], tmp+left.val))
+            if right := node.right:
+                stack.append((right, path+[right.val], tmp+right.val))
+        return res
 
 
 if __name__ == '__main__':
-    root = TreeNode(5)
-    root.left = TreeNode(4)
-    root.left.left = TreeNode(11)
-    root.left.left.left = TreeNode(7)
-    root.left.left.right = TreeNode(2)
-    root.right = TreeNode(8)
-    root.right.left = TreeNode(13)
-    root.right.right = TreeNode(4)
-    root.right.right.left = TreeNode(5)
-    root.right.right.right = TreeNode(1)
-    sol = Solution()
-    print(sol.pathSum(root, 22))
+    pass
