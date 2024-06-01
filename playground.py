@@ -63,66 +63,17 @@ def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
 
 
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        """
-        題目敘述：
-        1. 有兩條 linked-list 用來表示兩個非負整數
-        2. 數字的顯示方式是倒著排列
-
-        解題思路：
-
-        if I have l1 = [2, 4, 3], l2 = [5, 6, 4]
-        means 342 + 465 = 807
-        hence result is [7, 0, 8]
-
-        so, we start with the first digit
-            2 -> 4 -> 3
-          + 5 -> 6 -> 4
-        ----------------
-          = 7 -> 0 -> 8  
-        """
-        # set the result linked list
-        dummy = curr = ListNode(0)
-        tmp = 0
-        # go through l1 or l2 if node still exist
-        while tmp or l1 or l2:
-            # check if l1 can be calculated
-            if l1:
-                tmp += l1.val
-                l1 = l1.next
-            # check if l2 can be calculated
-            if l2:
-                tmp += l2.val
-                l2 = l2.next
-            # get quotient and remainder
-            div, mod = divmod(tmp, 10)
-            tmp = div
-            curr.next = ListNode(mod)
-            curr = curr.next
-        
-        return dummy.next
+    def climbStairs(self, n: int) -> int:
+        """Use bottom-up to solve the question."""
+        if n == 1: return 1
+        a, b = 1, 2
+        for _ in range(2, n):
+            a, b = b, a+b
+        return b
     
 
-# Test 1
-# Input: l1 = [2,4,3], l2 = [5,6,4]
-# Expect Output: [7,0,8]
-l1 = insert_nodes([2,4,3])
-l2 = insert_nodes([5,6,4])
-res = Solution().addTwoNumbers(l1, l2)
-print(print_nodes(res))
+# Test 1. n = 2
+print(Solution().climbStairs(2))
 
-# Test 2
-# Input: l1 = [0], l2 = [0]
-# Expect Output: [0]
-l1 = insert_nodes([0])
-l2 = insert_nodes([0])
-res = Solution().addTwoNumbers(l1, l2)
-print(print_nodes(res))
-
-# Test 3
-# Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
-# Expect Output: [8,9,9,9,0,0,0,1]
-l1 = insert_nodes([9,9,9,9,9,9,9])
-l2 = insert_nodes([9,9,9,9])
-res = Solution().addTwoNumbers(l1, l2)
-print(print_nodes(res))
+# Test 2. n = 3
+print(Solution().climbStairs(3))
