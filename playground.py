@@ -63,17 +63,32 @@ def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
 
 
 class Solution:
-    def climbStairs(self, n: int) -> int:
-        """Use bottom-up to solve the question."""
-        if n == 1: return 1
-        a, b = 1, 2
-        for _ in range(2, n):
-            a, b = b, a+b
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        """Solution 1. DP(bottom-up)"""
+        # dp = [None]*(len(cost)+1)
+        # dp[0], dp[1] = 0, 0
+        # for i in range(2, len(cost)+1):
+        #     dp[i] = min(
+        #         dp[i-1] + cost[i-1],
+        #         dp[i-2] + cost[i-2]
+        #     )
+        # return dp[-1]
+        """Solution 2. Optimize space usage from solution 1"""
+        a, b = 0, 0
+        for i in range(2, len(cost)+1):
+            a, b = b, min(
+                a + cost[i-2],
+                b + cost[i-1]
+            )
         return b
-    
 
-# Test 1. n = 2
-print(Solution().climbStairs(2))
 
-# Test 2. n = 3
-print(Solution().climbStairs(3))
+# Test 1. 
+# Input: cost = [10,15,20]
+# Output: 15
+print(Solution().minCostClimbingStairs([10,15,20]))
+
+# Test 2.
+# Input: cost = [1,100,1,1,1,100,1,1,100,1]
+# Output: 6
+print(Solution().minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]))
