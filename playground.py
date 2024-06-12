@@ -63,33 +63,52 @@ def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
 
 
 class Solution:
-    # def uniquePaths(self, m: int, n: int) -> int:
-    #     """
-    #     透過二維的陣列dp[m+1][n+1]來實作動態規劃，將每一格可走到的方法數
-    #     由dp[i][j-1]+dp[i-1][j]來求得。
-    #     """
-    #     dp = [[0]*(n+1)]*(m+1)
-    #     dp[1][1] = 1
-    #     for i in range(1,m+1):
-    #         for j in range(1,n+1):
-    #             dp[i][j] = dp[i][j-1] + dp[i-1][j]
-    #     print(dp)
-    #     return dp[m][n]
-    def uniquePaths(self, m: int, n: int) -> int:
-        def dp(col: int, row: int):
-            nonlocal m, n
-            if col == m-1 or row == n-1:
-                return 1
-            return dp(col+1, row) + dp(col, row+1)
-        return dp(0, 0)
+    def change(self, amount: int, coins: List[int]) -> int:
+        count = 0
+        coins.sort(reverse=True)
+        def backtrack(sum: int, remains: List[int]):
+            nonlocal count
+            if sum == amount:
+                count += 1
+                return
+            for i in range(len(remains)):
+                coin = remains[i]
+                if coin + sum > amount:
+                    continue
+                backtrack(coin+sum, remains[i:])
+        backtrack(0, coins)
+        return count
+
+        records = []
+        coins.sort(reverse=True)
+        def backtrack(path: List[int], remains: List[int]):
+            print(path, remains)
+            nonlocal records
+            if sum(path) == amount:
+                records.append(path[:])
+                return
+            for i in range(len(remains)):
+                coin = remains[i]
+                print(f"coin={coin}")
+                if coin + sum(path) > amount:
+                    continue
+                print(i, remains[i:])
+                backtrack(path[:]+[coin], remains[i:])
+        backtrack([], coins)
+        return records
 
 
 # Test 1. 
-# Input: m = 3, n = 7
-# Output: 28
-print(Solution().uniquePaths(m=3, n=7))
+# Input: amount = 5, coins = [1,2,5]
+# Output: 4
+print(Solution().change(amount=5, coins=[1,2,5]))
 
 # Test 2.
-# Input: m = 3, n = 2
-# Output: 3
-print(Solution().uniquePaths(m=3, n=2))
+# Input: amount = 3, coins = [2]
+# Output: 0
+print(Solution().change(amount=3, coins=[2]))
+
+# Test 3.
+# Input: amount = 10, coins = [10]
+# Output: 0
+print(Solution().change(amount=10, coins=[10]))
