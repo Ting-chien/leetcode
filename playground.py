@@ -62,40 +62,43 @@ def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
     return root
 
 
+# class Solution:
+#     def change(self, amount: int, coins: List[int]) -> int:
+#         count = 0
+#         coins.sort(reverse=True)
+#         def backtrack(sum: int, remains: List[int]):
+#             nonlocal count
+#             if sum == amount:
+#                 count += 1
+#                 return
+#             for i in range(len(remains)):
+#                 coin = remains[i]
+#                 if coin + sum > amount:
+#                     continue
+#                 backtrack(coin+sum, remains[i:])
+#         backtrack(0, coins)
+#         return count
+
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        count = 0
-        coins.sort(reverse=True)
-        def backtrack(sum: int, remains: List[int]):
-            nonlocal count
-            if sum == amount:
-                count += 1
-                return
-            for i in range(len(remains)):
-                coin = remains[i]
-                if coin + sum > amount:
-                    continue
-                backtrack(coin+sum, remains[i:])
-        backtrack(0, coins)
-        return count
+        """
+        DP(bottom-up)
+        
+        Assuming there is a list of combination, for each combination
+        equal to its origin value plus combination[amount-coin].
 
-        records = []
-        coins.sort(reverse=True)
-        def backtrack(path: List[int], remains: List[int]):
-            print(path, remains)
-            nonlocal records
-            if sum(path) == amount:
-                records.append(path[:])
-                return
-            for i in range(len(remains)):
-                coin = remains[i]
-                print(f"coin={coin}")
-                if coin + sum(path) > amount:
-                    continue
-                print(i, remains[i:])
-                backtrack(path[:]+[coin], remains[i:])
-        backtrack([], coins)
-        return records
+        Hence, the equation will be 
+
+        If amount >= coin THEN
+            combination[amount] += combination[amount-coin]
+
+        """
+        dp = [0]*(amount+1)
+        dp[0] = 1
+        for coin in coins:
+            for i in range(coin, amount+1):
+                dp[i] += dp[i-coin]
+        return dp[amount]
 
 
 # Test 1. 
