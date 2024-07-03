@@ -62,56 +62,67 @@ def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
     return root
 
 
-# class Solution:
-#     def change(self, amount: int, coins: List[int]) -> int:
-#         count = 0
-#         coins.sort(reverse=True)
-#         def backtrack(sum: int, remains: List[int]):
-#             nonlocal count
-#             if sum == amount:
-#                 count += 1
-#                 return
-#             for i in range(len(remains)):
-#                 coin = remains[i]
-#                 if coin + sum > amount:
-#                     continue
-#                 backtrack(coin+sum, remains[i:])
-#         backtrack(0, coins)
-#         return count
-
 class Solution:
-    def change(self, amount: int, coins: List[int]) -> int:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
         """
-        DP(bottom-up)
-        
-        Assuming there is a list of combination, for each combination
-        equal to its origin value plus combination[amount-coin].
+        Finding three num [nums[i], nums[j], nums[k]] which
+        i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 
-        Hence, the equation will be 
+        Notice: There might be duplicate number in the array,
+        but no duplicate triplets is allowable.
 
-        If amount >= coin THEN
-            combination[amount] += combination[amount-coin]
-
+        Solution: 透過一個 pointer 來遍歷所有 array 中的元素，並且透過 two 
+        pointers 的解題方式找尋剩下 array 中的數字。
         """
-        dp = [0]*(amount+1)
-        dp[0] = 1
-        for coin in coins:
-            for i in range(coin, amount+1):
-                dp[i] += dp[i-coin]
-        return dp[amount]
+        res = []
+        # 將 array 由小到大排序
+        nums.sort()
+        for i in range(len(nums)-2):
+            # 跳過與上一個相同的 num，來避免求出重複的答案
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            # 透過 two pointer 解出剩下的題目
+            target = 0 - nums[i]
+            j, k = i+1, len(nums)-1
+            while j < k:
+                print(j, k)
+                if nums[j] + nums[k] == target:
+                    res.append([nums[i], nums[j], nums[k]])
+                    j += 1
+                    k -= 1
+                    while nums[j] == nums[j-1]: 
+                        if j < k:
+                            j += 1
+                        else:
+                            break
+                    while nums[k] == nums[k+1]: 
+                        if j < k:
+                            k -= 1
+                        else:
+                            break
+                elif nums[j] + nums[k] > target:
+                    k -= 1
+                else:
+                    j += 1
+        return res
 
 
-# Test 1. 
-# Input: amount = 5, coins = [1,2,5]
-# Output: 4
-print(Solution().change(amount=5, coins=[1,2,5]))
+# Example 1:
+# Input: nums = [-1,0,1,2,-1,-4]
+# Output: [[-1,-1,2],[-1,0,1]]
+print(Solution().threeSum(nums=[-1,0,1,2,-1,-4]))
 
-# Test 2.
-# Input: amount = 3, coins = [2]
-# Output: 0
-print(Solution().change(amount=3, coins=[2]))
+# Example 2:
+# Input: nums = [0,1,1]
+# Output: []
+print(Solution().threeSum(nums=[0,1,1]))
 
-# Test 3.
-# Input: amount = 10, coins = [10]
-# Output: 0
-print(Solution().change(amount=10, coins=[10]))
+# Example 3:
+# Input: nums = [0,0,0]
+# Output: [[0,0,0]]
+print(Solution().threeSum(nums=[0,0,0]))
+
+# Example 3:
+# Input: nums = [-2,0,0,2,2]
+# Output: [[-2,0,2]]
+print(Solution().threeSum(nums=[-2,0,0,2,2]))
