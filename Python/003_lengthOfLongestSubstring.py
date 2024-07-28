@@ -7,11 +7,8 @@ class Solution:
         """
         window = ""
         max_length = 0
-        # set left and right side of window
-        left, right = 0, 0
         # iterate the string
-        while right < len(s):
-            char = s[right]
+        for char in s:
             if char in window:
                 # Update left side of window
                 window = window.split(char)[1] + char
@@ -19,7 +16,6 @@ class Solution:
                 # Update right side of window
                 window += char
                 max_length = max(max_length, len(window))
-            right += 1
         return max_length
     
 
