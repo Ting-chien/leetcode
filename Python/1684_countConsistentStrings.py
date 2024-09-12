@@ -5,6 +5,7 @@ class Solution1:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
         """
         方法一：透過 all() 來遍歷字元是否存在於 allowed 中
+        Time complexity: O(m*n*k)
         """
         count = 0
         for s in words:
@@ -16,6 +17,8 @@ class Solution2:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
         """
         方法二：將 allowed 改為 hash map 資料結構以提升查詢效能
+        Time complexity: O(n*k)
+        Space complexity: O(m)
         """
         count = 0
         allowed = set(allowed)
