@@ -15,12 +15,9 @@ class Solution1:
 class Solution2:
     def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
         # generate a list of prefix xor
-        p_xor = []
-        for i in range(len(arr)+1):
-            tmp = 0
-            for num in arr[0:i]:
-                tmp ^= num
-            p_xor.append(tmp)
+        p_xor = [0]*(len(arr)+1)
+        for i in range(len(arr)):
+            p_xor[i+1] = p_xor[i] ^ arr[i]
         # for each query q, compute the XOR from q[0] to q[1]+1
         # which is equal to XOR between p_xor[q[1]+1] and p_xor[q[0]]
         res = []
