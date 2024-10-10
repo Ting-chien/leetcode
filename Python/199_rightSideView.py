@@ -55,6 +55,23 @@ class Solution2:
         if root.left: self.dfs(root.left, level+1, res)
         if root.right: self.dfs(root.right, level+1, res)
 
+
+class Solution3:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res = [] # 宣告一陣列來紀錄節點
+        def dfs(node: Optional[TreeNode], depth: int):
+            # 若節點為空，則返回
+            if not node: return
+            # 判斷節點深度是否大於等於答案長度
+            if depth >= len(res):
+                res.append(node.val)
+            # 繼續往下遞迴
+            dfs(node.right, depth+1)
+            dfs(node.left, depth+1)
+        dfs(root, 0)
+        return res
+
+
 if __name__ == '__main__':
 
     # Test case1
@@ -71,7 +88,7 @@ if __name__ == '__main__':
     # Test case3
     root3 = None
 
-    sol = Solution2()
+    sol = Solution3()
     print(sol.rightSideView(root=root1))
     print(sol.rightSideView(root=root2))
     print(sol.rightSideView(root=root3))

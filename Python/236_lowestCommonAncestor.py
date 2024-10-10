@@ -56,6 +56,26 @@ class Solution2:
             return left
         elif right:
             return right
+        
+
+class Solution3:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # return if the node is empty
+        if not root: return
+        # check if current node is p or q
+        if root.val == q.val or root.val == p.val:
+            return root
+        # check if p or q exist in sub tree
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        elif left:
+            return left
+        elif right:
+            return right
+        else:
+            return
 
 
 if __name__ == '__main__':
