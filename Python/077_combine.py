@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class Solution1:
     def combine(self, n: int, k: int) -> List[List[int]]:
         
         # Make the list
@@ -23,9 +23,22 @@ class Solution:
             tmp.pop()
 
         return res
+    
+
+class Solution2:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+        def backtrack(n: int, path: List[int] = []):
+            if len(path) == k:
+                res.append(path)
+                return
+            for i in range(n, 0, -1):
+                backtrack(i-1, path+[i])
+        backtrack(n)
+        return res
 
     
 if __name__ == '__main__':
-    sol = Solution()
+    sol = Solution2()
     print(sol.combine(4,2))
     print(sol.combine(1,1))
