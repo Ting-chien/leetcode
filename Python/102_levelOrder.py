@@ -51,6 +51,24 @@ class Solution2:
 
         bfs(root, 0)
         return res
+    
+
+class Solution3:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if root is None: return []
+        queue = [root]
+        value = []
+        while queue:
+            tmp = []
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                tmp.append(node.val)
+                if left := node.left:
+                    queue.append(left)
+                if right := node.right:
+                    queue.append(right)
+            value.append(tmp)
+        return value
         
 
 if __name__ == '__main__':
@@ -59,5 +77,5 @@ if __name__ == '__main__':
     root.right = TreeNode(20)
     root.right.left = TreeNode(15)
     root.right.right = TreeNode(7)
-    sol = Solution2()
+    sol = Solution3()
     print(sol.levelOrder(root=root))
