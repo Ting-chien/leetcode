@@ -17,6 +17,19 @@ class Solution:
             path.pop()
 
 
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def backtrack(nums: List[int], path: List[int] = []):
+            # add subset to res
+            res.append(path)
+            # iterate through nums
+            for i in range(len(nums)):
+                backtrack(nums[i+1:], path+[nums[i]])
+        backtrack(nums)
+        return res
+
+
 if __name__ == '__main__':
     sol = Solution()
     print(sol.subsets([1,2,3]))
