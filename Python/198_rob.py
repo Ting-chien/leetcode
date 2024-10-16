@@ -39,9 +39,24 @@ class Solution2:
             res = max(dfs(n-1), dfs(n-2)+nums[n])
             return res
         return dfs(len(nums)-1)
-
+    
 
 class Solution3:
+    def rob(self, nums: List[int]) -> int:
+        """
+        Dynamic Programming
+        Time: O(n)
+        Space: O(n)
+        """
+        n = len(nums)
+        dp = [0] * n
+        dp[0], dp[1] = nums[0], max(nums[0], nums[1])
+        for i in range(2, len(nums)):
+            dp[i] = max(dp[i-1], dp[i-2]+nums[i])
+        return dp[n-1]
+
+
+class Solution4:
     def rob(self, nums: List[int]) -> int:
         """
         Reduce space complexity to O(1)

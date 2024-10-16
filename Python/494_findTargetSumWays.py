@@ -2,7 +2,7 @@ from typing import List
 from functools import cache
 
 
-def zero_one_backpack(capacity: int, wgt: List[int], val: List[int]) -> int:
+def zero_one_knapsack(capacity: int, wgt: List[int], val: List[int]) -> int:
     @cache
     def dfs(i: int, cap: int):
         """
@@ -19,11 +19,11 @@ def zero_one_backpack(capacity: int, wgt: List[int], val: List[int]) -> int:
         return max(dfs(i-1, cap), dfs(i-1, cap-wgt[i])+val[i])
     return dfs(len(wgt)-1, capacity)
 
-res = zero_one_backpack(capacity=50, wgt=[10,20,30,40,50], val=[50,120,150,210,240])
+res = zero_one_knapsack(capacity=50, wgt=[10,20,30,40,50], val=[50,120,150,210,240])
 print(res)
 
 
-class Solution:
+class Solution1:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         # make sure our target is calculable
         target += sum(nums)
@@ -36,7 +36,6 @@ class Solution:
             :param i: Number of integer to be select
             :param t: Target need to met
             """
-            print(f"i={i}")
             # if no remain integer
             if i < 0:
                 return 1 if t == 0 else 0
@@ -48,14 +47,33 @@ class Solution:
         return dfs(len(nums)-1, target)
     
 
+class Solution2:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        # make sure our target is calculable
+        target += sum(nums)
+        if target < 0 or target % 2 != 0: return 0
+        target = target // 2
+        # calculate how many type can be select
+        n = len(nums)
+        dp = [[0] * (target+1) for _ in range(n+1)]
+        dp[0][0] = 1 # only one solution for zero items with targe=0
+        for i in range(n):
+            for t in range(target+1):
+                if t < nums[i]:
+                    dp[i+1][t] = dp[i][t]
+                else:
+                    dp[i+1][t] = dp[i][t] + dp[i][t-nums[i]]
+        return dp[n][target]
+    
+
 # Example 1:
 # Input: nums = [1,1,1,1,1], target = 3
 # Output: 5
-res = Solution().findTargetSumWays(nums = [1,1,1,1,1], target = 3)
+res = Solution2().findTargetSumWays(nums = [1,1,1,1,1], target = 3)
 print(res)
 
 # Example 2:
 # Input: nums = [1], target = 1
 # Output: 1
-res = Solution().findTargetSumWays(nums = [1], target = 1)
+res = Solution2().findTargetSumWays(nums = [1], target = 1)
 print(res)
