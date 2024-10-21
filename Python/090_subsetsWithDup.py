@@ -1,8 +1,7 @@
 from typing import List
 
 
-class Solution:
-
+class Solution1:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         result = []
         def backtrack(nums: List[int], arr: List[int]):
@@ -16,6 +15,7 @@ class Solution:
         backtrack(nums, [])
         return result
     
+class Solution2:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
 	
         nums.sort()
@@ -26,12 +26,34 @@ class Solution:
                 temp = ans[index] + [num]
                 if temp not in ans:
                     ans.append(temp)
-        
         return ans
+    
+
+class Solution3:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        """2024/10/21"""
+        # sort nums before recursion start
+        nums.sort()
+
+        res = []
+        def dfs(nums: List[int], path: List[int] = []):
+            """
+            :param nums: Remain numbers
+            :param path: Current subset
+            """
+            res.append(path)
+            for i in range(len(nums)):
+                # continue if current number is equal to the previous one
+                if i != 0 and nums[i] == nums[i-1]:
+                    continue
+                dfs(nums[i+1:], path+[nums[i]])
+
+        dfs(nums)
+        return res
     
 
 if __name__ == '__main__':
 
-    sol = Solution()
+    sol = Solution3()
     print(sol.subsetsWithDup([1, 2, 2]))
     print(sol.subsetsWithDup([0]))
