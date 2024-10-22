@@ -1,5 +1,7 @@
 from typing import Optional
 
+from utils.binary_tree import insert_level_order
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -8,7 +10,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
+    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         res = []
         queue = [root]
         while queue:
@@ -21,4 +23,4 @@ class Solution:
                 if right := node.right:
                     queue.append(right)
             res.append(sum(tmp))
-        return -1 if k > len(res) else sorted(res, reverse=True)[k-1]
+        return res.index(max(res)) + 1
