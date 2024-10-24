@@ -11,15 +11,19 @@ class TreeNode:
 
 class Solution:
     def flipEquiv(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        # check if both leaf node
         if not root1 and not root2:
             return True
+        # if not, return False
         if not root1 or not root2:
             return False
         if root1.val == root2.val:
+            # if left trees are equal and right trees are equal
             if self.flipEquiv(root1.left, root2.left) \
                 and self.flipEquiv(root1.right, root2.right):
                 return True
-            elif self.flipEquiv(root1.left, root2.right) \
+            # if left tree of root1 equal to right tree of root2, vise versa
+            if self.flipEquiv(root1.left, root2.right) \
                 and self.flipEquiv(root1.right, root2.left):
                 return True
         return False
