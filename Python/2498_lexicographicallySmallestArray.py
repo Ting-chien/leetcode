@@ -44,7 +44,6 @@ class Solution2:
         group_to_nums = {} # 紀錄每個組別的數字
         start = 0
         group = 0
-        print(f"sorted_nums: {sorted_nums}")
         for i in range(len(sorted_nums)):
             if i > 0 and abs(sorted_nums[i] - sorted_nums[i-1]) > limit:
                 group_to_nums[group] = sorted_nums[start:i]
@@ -56,8 +55,6 @@ class Solution2:
                 num_to_group[sorted_nums[i]] = group
             else:
                 num_to_group[sorted_nums[i]] = group
-        print(f"num_to_group: {num_to_group}")
-        print(f"group_to_nums: {group_to_nums}")
 
         # 接著在遍歷一次 nums，並從該位置的數字找到組別，再將該組數字按順序填入
         for i in range(len(nums)):
