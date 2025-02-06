@@ -23,4 +23,4 @@ class Solution:
                     is_swapped = True
                 elif is_swapped:
                     return False
-        return True
+        return is_swapped and len(chars) == 0
