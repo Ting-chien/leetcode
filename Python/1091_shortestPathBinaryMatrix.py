@@ -65,9 +65,36 @@ class Solution2:
             distance += 1
         
         return -1
+
+
+class Solution3:
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        M, N = len(grid), len(grid[0])
+        directions = [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1], [0, 1],
+            [1, -1], [1, 0], [1, 1]
+        ]
+        min_cnt = float('inf')
+
+        def dfs(m, n, cnt):
+            # 走過要變成1
+            grid[m][n] = 1
+            if m == M-1 and n == N-1:
+                print(f"m={m}, n={n}")
+                nonlocal min_cnt
+                min_cnt = min(cnt, min_cnt)
+                return
+            for d in directions:
+                x, y = d[0], d[1]
+                if 0 <= m+x < M and 0 <= n+y < N and grid[m+x][n+y] == 0:
+                    dfs(m+x, n+y, cnt+1)
+        
+        dfs(0, 0, 1)
+        return min_cnt
         
 
 if __name__ == '__main__':
-    print(Solution2().shortestPathBinaryMatrix([[0,1],[1,0]]))
-    print(Solution2().shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]))    
-    print(Solution2().shortestPathBinaryMatrix([[1,0,0],[1,1,0],[1,1,0]]))
+    print(Solution3().shortestPathBinaryMatrix([[0,1],[1,0]]))
+    print(Solution3().shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]))    
+    print(Solution3().shortestPathBinaryMatrix([[1,0,0],[1,1,0],[1,1,0]]))

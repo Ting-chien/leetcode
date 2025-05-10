@@ -36,9 +36,22 @@ class Solution2:
                 backtrack(i-1, path+[i])
         backtrack(n)
         return res
+    
+
+class Solution3:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+        def backtrack(start: int, path: List[int] = []):
+            if len(path) == k:
+                res.append(path)
+                return
+            for i in range(start, n+1):
+                backtrack(i+1, path+[i])
+        backtrack(1)
+        return res
 
     
 if __name__ == '__main__':
-    sol = Solution2()
+    sol = Solution3()
     print(sol.combine(4,2))
     print(sol.combine(1,1))
