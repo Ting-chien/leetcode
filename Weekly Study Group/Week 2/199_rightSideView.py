@@ -19,7 +19,7 @@ class Solution:
         Return:
             All visible nodes
         """
-        # Store answer if an array
+        # Store answer in an array
         res = []
         # Traverse nodes by DFS
         def dfs(root: Optional[TreeNode], depth: int):
