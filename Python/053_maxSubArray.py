@@ -48,12 +48,20 @@ class Solution4:
     Time complexity: O(n)
     '''
     def maxSubArray(self, nums: List[int]) -> int:
-        #TODO
-        pass
+        global_max = float('-inf')
+        curr_max = 0
+        for num in nums:
+            if curr_max < 0:
+                curr_max = num
+            else:
+                curr_max += num
+            global_max = max(global_max, curr_max)
+        return global_max
+
         
 
 if __name__ == '__main__':
-    sol = Solution3()
+    sol = Solution4()
     print(sol.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
     print(sol.maxSubArray([1]))
     print(sol.maxSubArray([5,4,-1,7,8]))

@@ -2,27 +2,6 @@ from typing import List
 from functools import cache
 
 
-def unbounded_knapsack(capacity: int, wgt: List[int], val: List[int]) -> int:
-    @cache
-    def dfs(i: int, cap: int):
-        """
-        :param i: Number of items to be select
-        :param cap: Left capacity of backpack
-        """
-        # no item to choose
-        if i < 0:
-            return 0
-        # no capacity 
-        if wgt[i] > cap:
-            return dfs(i-1, cap)
-        # decide to select or not
-        return max(dfs(i-1, cap), dfs(i, cap-wgt[i])+val[i])
-    return dfs(len(wgt)-1, capacity)
-
-res = unbounded_knapsack(capacity=50, wgt=[10,20,30,40,50], val=[50,120,150,210,240])
-print(res)
-
-
 class Solution1:
     def coinChange(self, coins: List[int], amount: int) -> int:
         @cache
