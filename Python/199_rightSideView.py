@@ -33,7 +33,7 @@ class Solution:
 
         return res
 
-class Solution2:
+class Solution:
     '''
     透過遞迴的方式去將每一層做遍歷，再將每一層最後一個元素取出
     '''
@@ -56,7 +56,7 @@ class Solution2:
         if root.right: self.dfs(root.right, level+1, res)
 
 
-class Solution3:
+class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         res = [] # 宣告一陣列來紀錄節點
         def dfs(node: Optional[TreeNode], depth: int):
@@ -69,6 +69,34 @@ class Solution3:
             dfs(node.right, depth+1)
             dfs(node.left, depth+1)
         dfs(root, 0)
+        return res
+    
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        """
+        嘗試用 BFS 但使用例一種方式去遍歷同一層的節點 (2025/8/9)
+
+        Complexity
+        * Time: O(n) - beats 100%
+        * Space: O(W), width of tree - beats 17.12%
+        """
+        if not root: return []
+
+        queue = [[root]] # 將同一層的 nodes 放在一個 list 中
+        res = [] # 用來存每一層最右側的節點
+
+        while queue:
+            nodes = queue.pop(0)
+            res.append(nodes[-1].val)
+            tmp = []
+            for node in nodes:
+                if node.left:
+                    tmp.append(node.left)
+                if node.right:
+                    tmp.append(node.right)
+            if tmp: queue.append(tmp)
+
         return res
 
 
@@ -88,7 +116,7 @@ if __name__ == '__main__':
     # Test case3
     root3 = None
 
-    sol = Solution3()
+    sol = Solution()
     print(sol.rightSideView(root=root1))
     print(sol.rightSideView(root=root2))
     print(sol.rightSideView(root=root3))

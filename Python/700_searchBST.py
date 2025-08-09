@@ -9,14 +9,25 @@ class TreeNode:
 
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        def traverse(root: Optional[TreeNode]):
-            if root:
-                if root.val == val: return root
-                if left := traverse(root=root.left):
-                    return left
-                if right := traverse(root=root.right):
-                    return right
-        return traverse(root=root)
+        if root:
+            # Check whether node value equal to target value here
+            if root.val == val: return root
+            # if not, check next node in pre-order way.
+            return self.searchBST(root.left, val) or self.searchBST(root.right, val)
+    
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        """
+        善用 BST 的特性，左子樹 < root value < 右子樹來節省遍歷的次數
+        """
+        if not root:
+            return root
+        elif root.val==val:
+            return root
+        elif root.val<val:
+            return self.searchBST(root.right, val)
+        else:
+            return self.searchBST(root.left,val)
 
 if __name__ == '__main__':
     node1 = TreeNode(val=4)
