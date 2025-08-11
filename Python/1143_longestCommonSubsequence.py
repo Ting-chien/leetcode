@@ -88,6 +88,43 @@ class Solution4:
                 self.longestCommonSubsequence(text1, text2[:-1])
             )
 
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        """
+        Use a 2D dp table to store number of sebsequece of top i or 
+        top j text1 and text2.
+
+        For example: 
+
+            text1="abcde", text="ace"
+
+            * If text[i] == text2[j], dp[i][j] = dp[i - 1][j - 1] + 1
+            * If text[i] != text2[j], max(dp[i - 1][j], dp[i][j - 1])
+
+            dp = [.  a. b. c. d. e
+                 [0, 0, 0, 0, 0, 0], <- zero length of text, so zero legnth of subsequence
+              a  [0, 1, 1, 1, 1, 1],
+              c  [0, 1, 1, 2, 2, 2],
+              e  [0, 1, 1, 2, 2, 3]
+            ]
+                 ^
+                 zero length of text, so zero legnth of subsequence
+
+        Complexity
+         * Time: O(mn)
+         * Space: O(mn)
+        """
+        m, n = len(text1), len(text2)
+        memo = [[0]*(n+1) for _ in range(m+1)]
+
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                if text1[i-1] == text2[j-1]:
+                    memo[i][j] = memo[i-1][j-1] + 1
+                else:
+                    memo[i][j] = max(memo[i][j-1], memo[i-1][j])
+
+        return memo[m][n]
 
 
 if __name__ == '__main__':

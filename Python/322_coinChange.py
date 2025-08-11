@@ -37,3 +37,35 @@ class Solution2:
                     dp[i+1][a] = min(dp[i][a], dp[i+1][a-coins[i]]+1)
         res = dp[n][amount]
         return res if res < float('inf') else -1
+    
+
+class Solution3:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        n = len(coins)
+        # 定義邊界條件(當 coin=0 時，不管 amount 多少都是 inf)
+        dp = [[float('inf')]*(amount+1) for _ in range(n+1)]
+        # 當 amount=0 時，不管 coin 多少都是 0
+        for i in range(n+1):
+            dp[i][0] = 0
+        # 遍歷所有錢幣和金額的最小組成方式
+        for i in range(1, n+1):
+            for a in range(1, amount+1):
+                if coins[i-1] > a:
+                    dp[i][a] = dp[i-1][a]
+                else:
+                    dp[i][a] = min(dp[i-1][a], dp[i][a-coins[i-1]]+1)
+        res = dp[n][amount]
+        return res if res < float('inf') else -1
+    
+
+# Example 1:
+# Input: coins = [1,2,5], amount = 11
+# Output: 3
+res = Solution3().coinChange(coins = [1,2,5], amount = 11)
+print(res)
+
+# Example 2:
+# Input: coins = [2], amount = 3
+# Output: -1
+res = Solution3().coinChange(coins = [2], amount = 3)
+print(res)

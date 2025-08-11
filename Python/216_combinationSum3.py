@@ -15,6 +15,20 @@ class Solution:
         return res
     
 
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        res = []
+        def dfs(s: int, path: List[int]):
+            if len(path) == k or sum(path) >= n:
+                if len(path) == k and sum(path) == n:
+                    res.append(path)
+                return
+            for i in range(s, 10):
+                dfs(i+1, path+[i])
+        dfs(1, [])
+        return res
+    
+
 # Example 1:
 # Input: k = 3, n = 7
 # Output: [[1,2,4]]
