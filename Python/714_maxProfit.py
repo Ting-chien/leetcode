@@ -23,3 +23,8 @@ class Solution:
             cash[i] = max(cash[i-1], hold[i-1] + prices[i] - fee)
         
         return cash[-1]
+    
+
+# prices  1,  3,  2,  8,  4,  9
+# hold    -1,-1, -1,  -1, 1,  1 
+# cash    0,  0,  0,  5,  5,  8

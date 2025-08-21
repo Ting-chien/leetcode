@@ -75,6 +75,51 @@ class Solution:
         return provinces
     
 
+class Solution:
+
+    parents = []
+    count = 0
+
+    def find(self, x: int) -> int:
+        """
+        用來找到 x 的跟節點並作路徑壓縮，這個步驟很重要，有可能
+        原本的路徑關係是
+
+            a -> b -> c -> ... -> h
+
+        透過地回的方式往下找才能找到真正的 root 並幫助下一次搜尋
+        只需要花費 O(1) 的時間。
+        """
+        if self.parents[x] != x:
+            self.parents[x] = self.find(self.parents[x])
+        return self.parents[x]
+    
+    def union(self, x: int, y: int):
+        """
+        透過 union by rank/size，把小的樹掛到大的樹做 flatten
+        """
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x != root_y:
+            self.parents[root_y] = root_x
+            self.count -= 1
+
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        """
+        嘗試用 Union Find 的方式去找出所有 connected 的 cities。
+        """
+        n = len(isConnected)
+        self.count = n
+        self.parents = [i for i in range(n)]
+
+        for i in range(n):
+            for j in range(n):
+                if isConnected[i][j] == 1:
+                    self.union(i, j)
+
+        return self.count
+    
+
 # Example 1:
 # Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
 # Output: 2
