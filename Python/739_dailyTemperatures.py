@@ -22,38 +22,29 @@ class Solution:
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         """
-        For example,
+        The problem ask us to return an array, which value is the number
+        of days to wait for warmer temperature.
 
-            temperatures = [73,74,75,71,69,72,76,73]
-            res = [0,0,0,0,0,0,0,0]
+        Intuition
+        1. Use monotonic stack to find the index of warmer days
+        2. Put the diff of two days to the ans array
 
-            i=0, temp=73, stack=[]
-            i=1, temp=74, stack=[0]
-                prev_index=0, res=[1,0,0,0,0,0,0,0]
-            i=2, temp=75, stack=[1]
-                prev_index=1, res=[1,1,0,0,0,0,0,0]
-            i=3, temp=71, stack=[2]
-            i=4, temp=69, stack=[2,3]
-            i=5, temp=72, stack=[2,3,4]
-                prev_index=4, res=[1,1,1,0,0,0,0,0]
-                prev_index=3, res=[1,1,2,0,0,0,0,0]
-            i=6, temp=76, stack=[2,5]
-                prev_index=5, res=[1,1,3,0,0,0,0,0]
-                prev_index=2, res=[1,1,4,0,0,0,0,0]
-            i=7, temp=73, stack=[6]
+        Complexity
+        * Time: O(n)
+        * Space: O(n)
+        
         """
-        n = len(temperatures)
-        res = [0] * n
-        stack = []  # 存 index，棧內溫度遞減
-
-        for i, temp in enumerate(temperatures):
-            while stack and temperatures[stack[-1]] < temp:
-                prev_index = stack.pop()
-                res[prev_index] = i - prev_index
+        days = len(temperatures)
+        ans = [0] * days
+        stack = []
+        for i in range(days):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                idx = stack.pop()
+                ans[idx] = i - idx
             stack.append(i)
+        return ans
 
-        return res
-    
+
 # Example 1:
 # Input: temperatures = [73,74,75,71,69,72,76,73]
 # Output: [1,1,4,2,1,1,0,0]
