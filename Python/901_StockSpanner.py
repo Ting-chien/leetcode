@@ -38,7 +38,7 @@ class StockSpanner:
 
     def next(self, price: int) -> int:
         span = 1
-        while self.stack and price > self.stack[-1][0]:
+        while self.stack and price >= self.stack[-1][0]:
             # 如果 price 比昨天高，則把昨日的天數合併過來
             span += self.stack.pop()[1]
         # 紀錄自己的 span 天數

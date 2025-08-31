@@ -57,11 +57,20 @@ class Solution4:
                 curr_max += num
             global_max = max(global_max, curr_max)
         return global_max
+    
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [nums[0] for _ in range(n)]
+        for i in range(1, n):
+            dp[i] = max(nums[i], dp[i-1]+nums[i])
+        return max(dp)
 
         
 
 if __name__ == '__main__':
-    sol = Solution4()
+    sol = Solution()
     print(sol.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
     print(sol.maxSubArray([1]))
     print(sol.maxSubArray([5,4,-1,7,8]))
