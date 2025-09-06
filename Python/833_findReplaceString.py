@@ -43,6 +43,32 @@ class Solution:
         return "".join(result)
     
 
+class Solution:
+    def findReplaceString(self, s: str, indices: List[int], sources: List[str], targets: List[str]) -> str:
+
+        replacements = []
+        for index, source, target in zip(indices, sources, targets):
+            replacements.append((index, source, target))
+        replacements.sort(key=lambda x: x[0])
+
+        res = []
+        prev_idx = 0
+        for index, source, target in replacements:
+            l = len(source)
+            # 如果條件符合
+            if s[index:index+l] == source:
+                # 先將 prev_idx 到 idx 的字串加入 res
+                res.append(s[prev_idx:index])
+                # 在江心的字串也加入    
+                res.append(target)
+                # 更新 prev_idx
+                prev_idx += l
+        # 將最後的字串也加入 res
+        res.append(s[prev_idx:])
+
+        return "".join(res)
+        
+
 # Example 2:
 # Input: s="abcde", indices=[2,2,3], sources=["cde","cdef","dk"], targets=["fe","f","xyz"]
 # Output: "abfe"

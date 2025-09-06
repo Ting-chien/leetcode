@@ -26,6 +26,23 @@ class Solution2:
             curr_min = min(p, curr_min)
         return res
     
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        max_profit = 0 # 第一天獲利必為 0
+        min_price = prices[0] # 第一天可以得到的最小股價必為自身價錢
+        for p in prices[1:]:
+            min_price = min(min_price, p) # 比較誰才是歷史最低股價
+            max_profit = max(max_profit, p - min_price) # 比比看是否能從 p - min_price 得到更高獲利
+        return min_price
+    
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        cash, hold = 0, -prices[0]
+        for p in prices[1:]:
+            cash = max(cash, hold+p) # 不賣 vs 賣出
+            hold = max(hold, -p) # 每次買入都是最低價
+        return cash
+    
 
 print(Solution2().maxProfit([7,1,5,3,6,4]))
 print(Solution2().maxProfit([7,6,4,3,1]))

@@ -52,7 +52,7 @@ class Solution:
         """
         min_h = nums[:k]
         heapq.heapify(min_h)
-        for num in nums:
+        for num in nums[k:]:
             if num > min_h[0]:
                 heapq.heappop(min_h) # O(logN)
                 heapq.heappush(min_h, num) # O(logN)
