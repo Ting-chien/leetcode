@@ -24,7 +24,54 @@ class Solution:
 
         backtrack(2*n)
         return res
+    
 
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        """
+        Algorithm: Backtracking
+
+        Complexity
+         - Time: O(2^n) - beats 100%
+         - Space: O(n) - beats 69.93%
+        """
+        expressions = [] # All expressions in result
+        
+        def dfs(open: int, close: int, expr: str):
+            """
+            Args:
+                open: Number of open bracket
+                close: Number of close bracket
+                expr: Current expression 
+            """
+            # Base case
+            if len(expr) == 2*n:
+                expressions.append(expr)
+            # General case
+            for bracket in ("(", ")"):
+                if bracket == "(":
+                    if open < n and open >= close:
+                        dfs(open+1, close, expr+bracket)
+                if bracket == ")":
+                    if close < n and close < open:
+                        dfs(open, close+1, expr+bracket)
+
+        dfs(0, 0, "")
+        return expressions
+    
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        # 初始化一個長度為 n+1 的 dp 陣列，dp[i] 代表 n=i 時的有效排列
+        dp = [[] for _ in range(n + 1)]
+        dp[0] = [""]
+        # 透過 "(" + [i對括號的有效組合] + ")" + [i-1+j對括號的有效組合]
+        for i in range(1, n + 1):
+            for j in range(i):
+                for left in dp[j]:
+                    for right in dp[i - 1 - j]:
+                        dp[i].append(f"({left}){right}")
+        return dp[n]
 
 
 # Example 1:
