@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List, Tuple, Set
 
 
@@ -64,7 +65,41 @@ class Solution:
                 if board[i][j] == "#":
                     board[i][j] = "O"
 
-        print(board)
+
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        M, N = len(board), len(board[0])
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        # Step 1. Find all cells on the edge that board[i][j] == "O"
+        queue = deque()
+        for i in range(M):
+            for j in range(N):
+                if (i == 0 or i == M-1 or j == 0 or j == N-1) and board[i][j] == "O":
+                    board[i][j] = "#"
+                    queue.append((i, j))
+
+        # Step 2. Find all region that is not surrounded, and replace 
+        # cells with a temporary value "#"
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in directions:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < M and 0 <= ny < N and board[nx][ny] == "O":
+                    board[nx][ny] = "#"
+                    queue.append((nx, ny))
+
+        # Step 3. Replace all cell in region with "X" or "O". If cell is
+        # "#" means not surrounded, otherwise is surrounded
+        for i in range(M):
+            for j in range(N):
+                if board[i][j] == "#":
+                    board[i][j] = "O"
+                elif board[i][j] == "O":
+                    board[i][j] = "X"
 
 
 # Example 1:
@@ -76,3 +111,8 @@ Solution().solve(board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],
 # Input: board = [["X"]]
 # Output: [["X"]]
 Solution().solve(board = [["X"]])
+
+# Example 3:
+# Input: board = [["O","O","O"],["O","O","O"],["O","O","O"]]]
+# Output: [["O","O","O"],["O","O","O"],["O","O","O"]]]
+Solution().solve(board = [["O","O","O"],["O","O","O"],["O","O","O"]])
