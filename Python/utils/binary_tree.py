@@ -1,4 +1,5 @@
 from typing import List, Any, Optional
+from collections import deque
 
 
 class TreeNode:
@@ -17,25 +18,42 @@ def preorder_traverse(root: Optional[TreeNode]) -> List[Any]:
     return res
 
 def insert_level_order(arr: List[Any]) -> Optional[TreeNode]:
-    if not arr or not arr[0]: return None
-    if len(arr) <= 1: return TreeNode(arr[0])
-    
-    root = TreeNode(arr[0])
-    i = 1
-    queue = [root]
+    if not arr or arr[0] is None:
+        return None
 
-    while i < len(arr):
-        curr = queue.pop(0)
-        # 插入左子節點
-        curr.left = TreeNode(arr[i]) if arr[i] else None
-        if arr[i]:
-            queue.append(curr.left)
+    root = TreeNode(arr[0])
+    queue = deque([root])
+    i = 1  # index in arr
+
+    while queue and i < len(arr):
+        node = queue.popleft()
+
+        # 左子節點
+        if i < len(arr) and arr[i] is not None:
+            node.left = TreeNode(arr[i])
+            queue.append(node.left)
         i += 1
-        # 插入右子節點
-        if i < len(arr):
-            curr.right = TreeNode(arr[i]) if arr[i] else None
-            if arr[i]:
-                queue.append(curr.right)
+
+        # 右子節點
+        if i < len(arr) and arr[i] is not None:
+            node.right = TreeNode(arr[i])
+            queue.append(node.right)
         i += 1
-    
+
     return root
+
+def print_tree_level_order(root: Optional[TreeNode]):
+    if not root:
+        print("Empty tree")
+        return
+    q = deque([root])
+    res = []
+    while q:
+        node = q.popleft()
+        if node:
+            res.append(node.val)
+            q.append(node.left)
+            q.append(node.right)
+        else:
+            res.append(None)
+    print(res)
