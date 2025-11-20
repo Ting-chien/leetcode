@@ -19,7 +19,6 @@ class Solution:
 
         # Find subnet that sum is equal to target
         is_equal = False
-        memo = {}
         def dfs(start: int, curr: int):
 
             nonlocal is_equal
@@ -102,6 +101,32 @@ class Solution:
                     dp[i][j] = dp[i-1][j-nums[i-1]] or dp[i-1][j]
 
         return dp[n][target]
+    
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        """1D Dynamic Programming"""
+
+        # 檢查 subnets 是否有機會存在
+        total = sum(nums)
+        if total % 2 != 0:
+            return False
+        
+        # 每個 subnet 要加總的目標
+        n = len(nums)
+        target = total // 2
+
+        # 建立一個長度為 target+1 的 1D dp
+        dp = [False] * (target+1)
+        dp[0] = True
+
+        # 接著做 n 次迴圈
+        for i in range(1, n+1):
+            for j in range(target, nums[i-1]-1, -1):
+                # 迴圈的方向由 target 到 nums[i-1]，小於 nums[i-1] 的就可以直接跳過因為就跟上一層的質依樣
+                dp[j] = dp[j] or dp[j-nums[i-1]]
+
+        return dp[target]
 
 
 # Example 1:
@@ -118,3 +143,8 @@ print(Solution().canPartition(nums = [1,2,3,5]))
 # Input: nums = [1,2,5]
 # Output: false
 print(Solution().canPartition(nums = [1,2,5]))
+
+# Example 4:
+# Input: nums = [1,2,3]
+# Output: true
+print(Solution().canPartition(nums = [1,2,3]))
