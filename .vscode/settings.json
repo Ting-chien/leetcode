@@ -1,5 +1,6 @@
 {
     "chat.disableAIFeatures": true,
-    "python.REPL.enableREPLSmartSend": false
+    "python.REPL.enableREPLSmartSend": false,
     // "github.copilot.editor.enableAutoCompletions": false
+    "java.debug.settings.showHex": false
 }

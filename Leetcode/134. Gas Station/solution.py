@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        """Brutal Force (TLE)"""
+        """Brutal Force: O(n^2) (TLE)"""
         # Get the net amount of gas starting from each index
         net = [g - c for g, c in zip(gas, cost)]
         n = len(net)
