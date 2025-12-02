@@ -74,12 +74,8 @@ class Solution:
             dp[i][i] = True
 
         res = ""
-        # for i in range(n):
-        #     for j in range(i, n):
-        # 這裡因為 dp[i][j] 會根據 dp[i+1][j-1] 去計算，
-        # 因此知道 i 的計算方向是由右往左，而 j 是由左往右。
-        for j in range(1, n):
-            for i in range(j):
+        for i in range(n-1, -1, -1):
+            for j in range(i, n):
                 if s[i] == s[j] and \
                     ((j - i) < 3 or dp[i+1][j-1]):
                     dp[i][j] = True
@@ -92,12 +88,12 @@ class Solution:
 # Example 1:
 # Input: s = "babad"
 # Output: "bab"
-# print(Solution().longestPalindrome(s = "babad"))
+print(Solution().longestPalindrome(s = "babad"))
 
 # Example 2:
 # Input: s = "a"
 # Output: "a"
-# print(Solution().longestPalindrome(s = "a"))
+print(Solution().longestPalindrome(s = "a"))
 
 # Example 2:
 # Input: s = "aaaa"
