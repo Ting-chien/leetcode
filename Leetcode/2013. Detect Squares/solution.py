@@ -44,23 +44,27 @@ class DetectSquares:
 class DetectSquares:
 
     def __init__(self):
-        self.cnt = defaultdict(int)
+        # Appearance of each coordinates
+        self.counter = defaultdict(int)
 
     def add(self, point: List[int]) -> None:
-        self.cnt[tuple(point)] += 1
+        self.counter[(point[0], point[1])] += 1
 
     def count(self, point: List[int]) -> int:
-        x, y = point
-        res = 0
+        # Iterate all points on grid, check
+        # 1. Whether the edges along x and y direction are equal
+        # 2. Two points are not the same
+        x1, y1 = point[0], point[1]
 
-        for (x2, y2), c in self.cnt.items():
-            if abs(x2 - x) == abs(y2 - y) and x2 != x and y2 != y:
-                res += (
-                    c *
-                    self.cnt[(x, y2)] *
-                    self.cnt[(x2, y)]
-                )
-        return res
+        cnt = 0
+        for x2, y2 in self.counter.keys():
+            if abs(x1 - x2) == abs(y1 - y2) and x1 != x2 and y1 != y2:
+                # Count the product of the appearance of three corners
+                cnt += self.counter[(x2, y2)] \
+                    * self.counter[(x1, y2)] \
+                    * self.counter[(x2, y1)]
+                
+        return cnt
 
 
 # Example 1,
