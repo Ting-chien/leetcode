@@ -1,5 +1,6 @@
 import math
 from typing import List
+from collections import defaultdict
 
 class Solution:
     def validSquare(self, p1: List[int], p2: List[int], p3: List[int], p4: List[int]) -> bool:
@@ -37,6 +38,36 @@ class Solution:
             distances.add(get_len(center, p))
         
         return len(distances) == 1
+    
+
+class Solution:
+    def validSquare(self, p1: List[int], p2: List[int], p3: List[int], p4: List[int]) -> bool:
+        """
+        Actual principle to define a square
+         - Equal length on 4 edges
+         - Equal length on 2 diagnals
+        """
+
+        def get_distance_sqr(x1: int, y1: int, x2: int, y2: int) -> int:
+            return (x1 - x2) ** 2 + (y1 - y2) ** 2
+        
+        # Combine every two points and store the distance of two points
+        # into the counter
+        counter = defaultdict(int)
+        points = [p1, p2, p3, p4]
+        for i in range(4):
+            p1 = points[i]
+            for j in range(i+1, 4):
+                p2 = points[j]
+                dis = get_distance_sqr(p1[0], p1[1], p2[0], p2[1])
+                counter[dis] += 1
+
+        # Check if 4 edges are equal and 2 diagonals are equals
+        if len(counter) != 2:
+            return False
+        # Also, the points can not be duplicated (edge > 0)
+        edges, diags = sorted(counter.items())[:2]
+        return edges[0] > 0 and edges[1] == 4 and diags[1] == 2
     
 
 # Example 1:
