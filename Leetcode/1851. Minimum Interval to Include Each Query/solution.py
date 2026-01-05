@@ -49,6 +49,37 @@ class Solution:
             res.append(size)
             
         return res
+
+import heapq
+from collections import deque
+
+class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        
+        # Sort intervals by left-side value
+        sort_intervals = deque(sorted(intervals, key=lambda x: x[0]))
+        # Sort queries by value (index should be store in the same time)
+        sort_queries = sorted([(q, i) for i, q in enumerate(queries)], key=lambda x: x[0])
+
+        res = [-1] * len(queries)
+        min_h = []
+        # For loop query and index in sort_queries, and check if interval is valid
+        for query, idx in sort_queries:
+
+            # Every time, we find valid (query >= left-side) interval and push to heap
+            while sort_intervals and query >= sort_intervals[0][0]:
+                left, right = sort_intervals.popleft()
+                heapq.heappush(min_h, (right-left+1, right))
+
+            # Then, check if right-side >= query, pop out interval if not
+            while min_h and min_h[0][1] < query:
+                heapq.heappop(min_h)
+
+            # Get the smallest interval in heap, if heap empty return -1
+            res[idx] = min_h[0][0] if min_h else -1
+
+        # Return result by index order
+        return res
     
 
 # Example 1:
