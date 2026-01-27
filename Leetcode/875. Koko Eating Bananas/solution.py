@@ -1,3 +1,4 @@
+import math
 from typing import List
 
 
@@ -45,9 +46,7 @@ class Solution:
             """
             cnt = 0
             for p in piles:
-                div, mod = divmod(p, k)
-                cnt += div
-                cnt += 1 if mod else 0
+                cnt += math.ceil(p / k)
             return cnt <= h
         
         while left < right:
