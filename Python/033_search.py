@@ -19,8 +19,6 @@ def search(nums: List[int], target: int) -> int:
             r = m - 1
     return -1
 
-def search(nums: List[int], target: int) -> int:
-
 
 if __name__ == '__main__':
 
