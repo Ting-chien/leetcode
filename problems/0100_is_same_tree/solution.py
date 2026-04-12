@@ -72,6 +72,16 @@ def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
             
     return not stackP and not stackQ
 
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # If p or q is null, check if both nodes are null
+        if not p or not q:
+            return p == q
+        # Otherwise, recursive to next level
+        return p.val == q.val \
+            and self.isSameTree(p.left, q.left) \
+            and self.isSameTree(p.right, q.right)
+
 
 if __name__ == '__main__':
     p = TreeNode(1)
