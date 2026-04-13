@@ -57,3 +57,11 @@ def print_tree_level_order(root: Optional[TreeNode]):
         else:
             res.append(None)
     print(res)
+
+
+def find_node(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    if not root:
+        return None
+    if root.val == val:
+        return root
+    return find_node(root.left, val) or find_node(root.right, val)

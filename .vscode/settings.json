@@ -1,6 +1,6 @@
 {
-    "chat.disableAIFeatures": true,
     "python.REPL.enableREPLSmartSend": false,
-    // "github.copilot.editor.enableAutoCompletions": false
-    "java.debug.settings.showHex": false
+    "terminal.integrated.env.osx": {
+       "PYTHONPATH": "${workspaceFolder}"
+    }
 }
