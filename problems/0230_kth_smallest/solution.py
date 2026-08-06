@@ -1,5 +1,5 @@
 from typing import Optional
-from utils.binary_tree import insert_level_order
+from tools.binary_tree import insert_level_order
 
 
 class TreeNode:
@@ -40,13 +40,40 @@ class Solution:
 
         inorder_traverse(node=root)
         return curr_max
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        """
+        Use in-order traverse to find node where k == 0
+
+        Complexity
+         - Time: O(n)
+         - Space: O(1)
+        """
+        # def inorder_traverse(root: Optional[TreeNode], k: int) ->
+
+        if not root:
+            return 
+
+        # Find left side
+        if (kth_smallest := self.kthSmallest(root.left, k-1)):
+            return kth_smallest
+
+        # Find middle
+        print(f"node: {root.val}, k: {k}")
+        if k == 0:
+            return root.val
+
+        # Find right side
+        if (kth_smallest := self.kthSmallest(root.right, k-1)):
+            return kth_smallest
     
 # Example 1:
 # Input: root = [3,1,4,None,2], k = 1
 # Output: 1
-root = insert_level_order([3,1,4,None,2])
-res = Solution().kthSmallest(root=root, k=1)
-print(res)
+# root = insert_level_order([3,1,4,None,2])
+# res = Solution().kthSmallest(root=root, k=1)
+# print(res)
 
 # Example 2:
 # Input: root = [5,3,6,2,4,null,null,1], k = 3
