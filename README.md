@@ -1,6 +1,8 @@
 # LeetCode Solutions
 
-My LeetCode solutions in multiple programming languages.
+My LeetCode is a project to track my LeetCode solutions and thinking process.
+
+Apart from this, this project also includes contents for interview, weekly contest and study group.
 
 ## Problems
 
@@ -35,6 +37,8 @@ My LeetCode solutions in multiple programming languages.
 | 52. [Solve Nqueens](problems/0052_solve_nqueens/) | ✅ |  |  |  |
 | 53. [Max Sub Array](problems/0053_max_sub_array/) | ✅ |  |  |  |
 | 54. [Spiral Order](problems/0054_spiral_order/) |  | ✅ |  |  |
+| 56. [Merge Intervals](problems/0056_merge_interval/) | ✅ |  |  | ✅ |
+| 57. [Insert Interval](problems/0057_insert_interval/) | ✅ |  |  | ✅ |
 | 62. [Unique Paths](problems/0062_unique_paths/) | ✅ |  |  |  |
 | 66. [Plus One](problems/0066_plus_one/) | ✅ | ✅ |  |  |
 | 67. [Add Binary](problems/0067_add_binary/) | ✅ |  |  |  |
