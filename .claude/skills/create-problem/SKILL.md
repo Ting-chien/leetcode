@@ -47,6 +47,6 @@ Run the file and compare output against the examples from the problem statement:
 - Python: `python3 solution.py`
 - JavaScript: `node solution.js`
 - Go: `go run solution.go`
-- Java: `javac solution.java && java solution` (from inside the problem folder)
+- Java: `javac solution.java && java solution` (from inside the problem folder). Done only when every `.class` file `javac` produced in that folder is deleted (`solution.class`, `Solution1.class`, and any other compiled class). Delete them after the run whether tests passed or failed.
 
 There's no test framework in this repo - correctness is judged by comparing the script's printed output for each example to the expected output in the problem statement.

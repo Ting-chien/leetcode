@@ -23,7 +23,7 @@ Same idea as `create-problem`, but for a problem that already has a folder under
    - Python: `python3 solution.py`
    - JavaScript: `node solution.js`
    - Go: `go run solution.go`
-   - Java: `javac solution.java && java solution`
+   - Java: `javac solution.java && java solution` (from inside the problem folder). Done only when every `.class` file `javac` produced in that folder is deleted (`solution.class`, `Solution1.class`, and any other compiled class). Delete them after the run whether tests passed or failed.
 
    Do not write or edit solution files yourself - only inspect and run what's already there.
 
