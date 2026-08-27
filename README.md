@@ -64,7 +64,7 @@ Apart from this, this project also includes contents for interview, weekly conte
 | 104. [Max Depth](problems/0104_max_depth/) | ✅ |  |  |  |
 | 110. [Balanced Binary Tree](problems/0110_balanced_binary_tree/) | ✅ |  |  |  |
 | 113. [Path Sum](problems/0113_path_sum/) | ✅ | ✅ |  |  |
-| 121. [Max Profit](problems/0121_max_profit/) | ✅ |  |  |  |
+| 121. [Max Profit](problems/0121_max_profit/) | ✅ |  |  | ✅ |
 | 122. [Max Profit](problems/0122_max_profit/) | ✅ |  |  |  |
 | 124. [Max Path Sum](problems/0124_max_path_sum/) | ✅ | ✅ |  |  |
 | 128. [Longest Consecutive Sequence](problems/0128_longest_consecutive_sequence/) | ✅ |  |  |  |
@@ -132,7 +132,7 @@ Apart from this, this project also includes contents for interview, weekly conte
 | 416. [Can Partition](problems/0416_can_partition/) | ✅ |  |  |  |
 | 417. [Pacific Atlantic Water Flow](problems/0417_pacific_atlantic_water_flow/) | ✅ |  |  |  |
 | 424. [Longest Repeating Character Replacement](problems/0424_longest_repeating_character_replacement/) | ✅ |  |  |  |
-| 435. [Erase Overlap Intervals](problems/0435_erase_overlap_intervals/) | ✅ |  |  |  |
+| 435. [Erase Overlap Intervals](problems/0435_erase_overlap_intervals/) | ✅ |  |  | ✅ |
 | 437. [Path Sum](problems/0437_path_sum/) | ✅ |  |  |  |
 | 442. [Find Duplicates](problems/0442_find_duplicates/) | ✅ | ✅ |  |  |
 | 443. [Compress](problems/0443_compress/) | ✅ |  |  |  |
