@@ -4,6 +4,16 @@ My LeetCode is a project to track my LeetCode solutions and thinking process.
 
 Apart from this, this project also includes contents for interview, weekly contest and study group.
 
+## Skills
+
+Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them with `/skill-name`.
+
+| Skill | What it does | How to use |
+|:------|:-------------|:-----------|
+| [create-problem](.claude/skills/create-problem/SKILL.md) | Scaffolds a new LeetCode problem: folder under `problems/`, statement, language stubs, and a row in the Problems table. | `/create-problem Merge Intervals` — optionally name languages (Python, JavaScript, Go, Java). |
+| [update-problem](.claude/skills/update-problem/SKILL.md) | Syncs an existing problem: refreshes the statement if needed, checks which solutions pass, and fixes README checkmarks/links. Does not create new files. | `/update-problem 56` or `/update-problem Merge Intervals` |
+| [commit](.claude/skills/commit/SKILL.md) | Commits pending `problems/` and `WeeklyContest/` changes using this repo's message conventions. New vs updated, and problems vs weekly contest, go in separate commits. | `/commit` — or `/commit WeeklyContest 517` to target a specific contest. |
+
 ## Problems
 
 | Problem | Python | JavaScript | Go | Java |
