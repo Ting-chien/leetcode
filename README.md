@@ -40,6 +40,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 33. [Search in Rotated Sorted Array](problems/0033_search_in_rotated_sorted_array/) | ✅ |  |  |  |
 | 35. [Search Insert](problems/0035_search_insert/) | ✅ |  |  |  |
 | 43. [Multiply Strings](problems/0043_multiply_strings/) | ✅ |  |  |  |
+| 45. [Jump Game II](problems/0045_jump_game_ii/) |  |  |  |  |
 | 46. [Permute](problems/0046_permute/) | ✅ |  |  |  |
 | 47. [Permute Unique](problems/0047_permute_unique/) | ✅ |  |  |  |
 | 48. [Rotate](problems/0048_rotate/) | ✅ |  |  |  |
@@ -47,6 +48,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 52. [Solve Nqueens](problems/0052_solve_nqueens/) | ✅ |  |  |  |
 | 53. [Max Sub Array](problems/0053_max_sub_array/) | ✅ |  |  |  |
 | 54. [Spiral Order](problems/0054_spiral_order/) |  | ✅ |  |  |
+| 55. [Jump Game](problems/0055_jump_game/) |  |  |  |  |
 | 56. [Merge Intervals](problems/0056_merge_interval/) | ✅ |  |  | ✅ |
 | 57. [Insert Interval](problems/0057_insert_interval/) | ✅ |  |  | ✅ |
 | 62. [Unique Paths](problems/0062_unique_paths/) | ✅ |  |  |  |
