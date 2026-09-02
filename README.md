@@ -47,7 +47,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 49. [Group Anagrams](problems/0049_group_anagrams/) | ✅ | ✅ |  |  |
 | 52. [Solve Nqueens](problems/0052_solve_nqueens/) | ✅ |  |  |  |
 | 53. [Max Sub Array](problems/0053_max_sub_array/) | ✅ |  |  |  |
-| 54. [Spiral Order](problems/0054_spiral_order/) |  | ✅ |  |  |
+| 54. [Spiral Order](problems/0054_spiral_order/) | ✅ | ✅ |  |  |
 | 55. [Jump Game](problems/0055_jump_game/) |  |  |  |  |
 | 56. [Merge Intervals](problems/0056_merge_interval/) | ✅ |  |  | ✅ |
 | 57. [Insert Interval](problems/0057_insert_interval/) | ✅ |  |  | ✅ |
