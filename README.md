@@ -159,7 +159,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 518. [Change](problems/0518_change/) | ✅ | ✅ |  |  |
 | 539. [Find Min Difference](problems/0539_find_min_difference/) | ✅ |  |  |  |
 | 543. [Diameter Of Binary Tree](problems/0543_diameter_of_binary_tree/) | ✅ |  |  |  |
-| 547. [Find Circle Num](problems/0547_find_circle_num/) | ✅ |  |  |  |
+| 547. [Find Circle Num](problems/0547_find_circle_num/) | ✅ |  | ✅ |  |
 | 561. [Array Pair Sum](problems/0561_array_pair_sum/) | ✅ | ✅ |  |  |
 | 572. [Is Subtree](problems/0572_is_subtree/) | ✅ |  |  |  |
 | 593. [Valid Square](problems/0593_valid_square/) | ✅ |  |  |  |
@@ -185,7 +185,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 796. [Rotate String](problems/0796_rotate_string/) | ✅ |  |  |  |
 | 820. [Minimum Length Encoding](problems/0820_minimum_length_encoding/) | ✅ |  |  |  |
 | 833. [Find Replace String](problems/0833_find_replace_string/) | ✅ |  |  |  |
-| 841. [Can Visit All Rooms](problems/0841_can_visit_all_rooms/) | ✅ |  |  |  |
+| 841. [Can Visit All Rooms](problems/0841_can_visit_all_rooms/) | ✅ |  | ✅ |  |
 | 852. [Peak Index In Mountain Array](problems/0852_peak_index_in_mountain_array/) | ✅ | ✅ |  |  |
 | 872. [Leaf Similar](problems/0872_leaf_similar/) | ✅ |  |  |  |
 | 875. [Koko Eating Bananas](problems/0875_koko_eating_bananas/) | ✅ |  |  |  |
