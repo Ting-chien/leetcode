@@ -229,6 +229,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 1493. [Longest Subarray](problems/1493_longest_subarray/) | ✅ |  |  |  |
 | 1545. [Find Kth Bit](problems/1545_find_kth_bit/) | ✅ |  |  |  |
 | 1593. [Max Unique Split](problems/1593_max_unique_split/) | ✅ |  |  |  |
+| 1631. [Path With Minimum Effort](problems/1631_path_with_minimum_effort/) |  |  |  |  |
 | 1639. [Num Ways](problems/1639_num_ways/) | ✅ |  |  |  |
 | 1652. [Decrypt](problems/1652_decrypt/) | ✅ |  |  |  |
 | 1657. [Close Strings](problems/1657_close_strings/) | ✅ |  |  |  |
