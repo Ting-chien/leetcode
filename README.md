@@ -181,6 +181,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 743. [Network Delay Time](problems/0743_network_delay_time/) | ✅ |  |  |  |
 | 746. [Min Cost Climbing Stairs](problems/0746_min_cost_climbing_stairs/) | ✅ |  |  |  |
 | 778. [Swim In Water](problems/0778_swim_in_water/) | ✅ |  |  |  |
+| 787. [Cheapest Flights Within K Stops](problems/0787_cheapest_flights_within_k_stops/) |  |  |  |  |
 | 790. [Num Tilings](problems/0790_num_tilings/) | ✅ |  |  |  |
 | 796. [Rotate String](problems/0796_rotate_string/) | ✅ |  |  |  |
 | 820. [Minimum Length Encoding](problems/0820_minimum_length_encoding/) | ✅ |  |  |  |
