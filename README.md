@@ -104,6 +104,7 @@ Agent skills live under `.claude/skills/`. In Cursor or Claude Code, invoke them
 | 207. [Can Finish](problems/0207_can_finish/) |  | ✅ |  |  |
 | 208. [Trie](problems/0208_trie/) | ✅ |  |  |  |
 | 209. [Min Sub Array Len](problems/0209_min_sub_array_len/) | ✅ |  |  |  |
+| 210. [Course Schedule II](problems/0210_course_schedule_ii/) |  |  |  |  |
 | 213. [Rob Ii](problems/0213_rob_ii/) | ✅ |  |  |  |
 | 215. [Find Kth Largest](problems/0215_find_kth_largest/) | ✅ |  |  |  |
 | 216. [Combination Sum3](problems/0216_combination_sum3/) | ✅ |  |  |  |
